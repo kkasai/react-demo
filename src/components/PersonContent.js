@@ -5,14 +5,13 @@ import PersonContext from '../context/Person'
 
 const PersonContent = () => (
   <PersonContext.Consumer>
-    {({getPersonList}) => {
-      return (
-        <Fragment>
-          <PersonRegister getPersonList={getPersonList} />
-          <PersonList />
-        </Fragment>
-      )
-    }}
+    {({getPersonList}) => (
+      <Fragment>
+        <PersonRegister getPersonList={getPersonList} />
+        <PersonList />
+      </Fragment>
+
+    )}
   </PersonContext.Consumer>
 );
 
