@@ -11,12 +11,11 @@ RUN curl https://circleci.com/api/v1.1/project/github/kkasai/react-demo/latest/a
 
 RUN tar zxvf /tmp/build.tar.gz -C /tmp
 
-FROM node:10.13-alpine
 
-COPY --from=build /tmp/build /usr/src/app
+FROM nginx:1.15.6-alpine
 
-RUN yarn global add serve
+COPY --from=build /tmp/build /usr/share/nginx/html
 
-EXPOSE 5000
+EXPOSE 80
 
-CMD ["serve", "-s", "/usr/src/app"]
+CMD ["nginx", "-g", "daemon off;"]
